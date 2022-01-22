@@ -35,10 +35,11 @@ struct CartView: View {
                         print("!ORDER!")
                     }
                     .font(.callout.weight(.medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("TextReversed"))
                     .padding(10)
-                    .background(.black)
+                    .background(Color("ForegroundReversed"))
                     .cornerRadius(.infinity)
+                    .padding(.top, 10)
                 }
             }
         }

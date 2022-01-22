@@ -16,6 +16,10 @@ class LikedViewModel: ObservableObject {
     init(dataManager: DataManagerProtocol = MockDataManager()) {
         self.dataManager = dataManager
         likedList = []
+    }
+    
+    func loadLiked() {
+        likedList = []
         
         for id in dataManager.getLikedIDs()! {
             for product in dataManager.getProducts()! {

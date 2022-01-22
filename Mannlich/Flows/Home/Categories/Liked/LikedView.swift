@@ -29,6 +29,9 @@ struct LikedView: View {
                 .navigationTitle("Liked")
             }
         }
+        .onAppear() {
+            viewModel.loadLiked()
+        }
     }
     
     private func removeFromLiked(offsets: IndexSet) {

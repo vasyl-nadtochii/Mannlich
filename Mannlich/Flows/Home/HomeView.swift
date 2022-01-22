@@ -30,7 +30,7 @@ struct HomeView: View {
                 }
                 .tag(Tab.novelties)
             
-            SearchView()
+            SearchView(viewModel: SearchViewModel(dataManager: viewModel.dataManager))
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
