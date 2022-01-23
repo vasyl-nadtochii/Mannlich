@@ -10,9 +10,13 @@
 import Foundation
 
 class SearchItemViewModel: ObservableObject {
-    @Published var product: Product
+    var product: Product
+    @Published var isLiked: Bool
+    var handler: (Int) -> Void
     
-    init(product: Product) {
+    init(product: Product, isLiked: Bool, handler: @escaping (Int) -> Void) {
         self.product = product
+        self.isLiked = isLiked
+        self.handler = handler
     }
 }

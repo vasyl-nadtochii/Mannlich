@@ -12,10 +12,17 @@ import Combine
 
 class SearchViewModel: ObservableObject {
     let dataManager: DataManagerProtocol
-    @Published var searchList: [Product]
+    @Published var searchList: [Product] = []
     
     init(dataManager: DataManagerProtocol) {
         self.dataManager = dataManager
+    }
+    
+    func isLiked(product: Product) -> Bool {
+        dataManager.getLikedIDs()!.contains(where: { $0 == product.id })
+    }
+    
+    func loadList() {
         searchList = dataManager.getProducts()!
     }
 }

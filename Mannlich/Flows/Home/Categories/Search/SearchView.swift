@@ -19,18 +19,22 @@ struct SearchView: View {
 
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                ScrollView(showsIndicators: false) {
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(viewModel.searchList) { product in
-                            SearchItemView(viewModel: SearchItemViewModel(product: product))
-                                .frame(height: geometry.size.width / 2)
-                        }
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: columns, spacing: 12.5) {
+                    ForEach(viewModel.searchList) { product in
+                        SearchItemView(viewModel: SearchItemViewModel(
+                            product: product, isLiked: viewModel.isLiked(product: product), handler: { id in
+                            viewModel.dataManager.addRemoveLiked(id: id)
+                        }))
+                        .aspectRatio(5/7, contentMode: .fill)
                     }
                 }
             }
             .navigationTitle("Search")
             .padding(.horizontal, 10)
+            .onAppear(perform: {
+                viewModel.loadList()
+            })
         }
     }
 }
