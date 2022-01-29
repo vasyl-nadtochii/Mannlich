@@ -21,6 +21,7 @@ class MockDataManager {
     private(set) var viewedProductsList: [ViewedProduct]?
     private(set) var likedProductsIDs: [Int]?
     private(set) var cartProducts: [CartProduct]
+    private(set) var announcementsList: [Announcement]?
     
     init() {
         let dateFormatter = DateFormatter()
@@ -60,6 +61,15 @@ class MockDataManager {
             CartProduct(product: productsList![1], amount: 1)
         ]
         
+        announcementsList = [
+            Announcement(topic: "Meet 2022 with new collection",
+                         content: "Placeholder",
+                         date: dateFormatter.date(from: "2022-01-22")!, image: Image("test_image2")),
+            Announcement(topic: "Да, я слышал про распродажи. А ты?",
+                         content: "Placeholder #2",
+                         date: dateFormatter.date(from: "2021-11-29")!, image: Image("gigachad"))
+        ]
+        
         likedProductsIDs = [1, 3, 7, 10]
         
         user = User(name: "Vasyl Nadtochii",
@@ -69,6 +79,10 @@ class MockDataManager {
 }
 
 extension MockDataManager: DataManagerProtocol {
+    func getAnnouncements() -> [Announcement]? {
+        return announcementsList
+    }
+    
     func changeCartItemAmount(id: Int, newValue: Int) {
         for i in 0..<cartProducts.count {
             if cartProducts[i].product.id == id {

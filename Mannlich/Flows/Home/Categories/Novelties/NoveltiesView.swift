@@ -12,8 +12,15 @@ import SwiftUI
 struct NoveltiesView: View {
     var body: some View {
         NavigationView {
-            Text("Novelties Screen")
-                .navigationTitle("What's New")
+            List {
+                PageView(pages: MockDataManager().announcementsList!.map {
+                    FeatureCard(announcement: $0)
+                })
+                .aspectRatio(3 / 2, contentMode: .fit)
+                .listRowInsets(EdgeInsets())
+            }
+            .listStyle(.inset)
+            .navigationTitle("What's New")
         }
     }
 }
