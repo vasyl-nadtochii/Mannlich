@@ -52,11 +52,13 @@ struct CartProduct: Identifiable {
     let id: UUID
     let product: Product
     var amount: Int
+    var size: String
     
-    init(id: UUID = UUID(), product: Product, amount: Int) {
+    init(id: UUID = UUID(), product: Product, amount: Int, size: String) {
         self.id = id
         self.product = product
         self.amount = amount
+        self.size = size
     }
 }
 

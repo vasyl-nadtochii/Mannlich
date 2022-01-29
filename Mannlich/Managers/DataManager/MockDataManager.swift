@@ -57,8 +57,8 @@ class MockDataManager {
         ]
         
         cartProducts = [
-            CartProduct(product: productsList![3], amount: 2),
-            CartProduct(product: productsList![1], amount: 1)
+            CartProduct(product: productsList![3], amount: 2, size: "XS"),
+            CartProduct(product: productsList![1], amount: 1, size: "M")
         ]
         
         announcementsList = [
@@ -79,6 +79,15 @@ class MockDataManager {
 }
 
 extension MockDataManager: DataManagerProtocol {
+    func changeCartItemSize(id: Int, newValue: String) {
+        for i in 0..<cartProducts.count {
+            if cartProducts[i].product.id == id {
+                cartProducts[i].size = newValue
+                break
+            }
+        }
+    }
+    
     func getAnnouncements() -> [Announcement]? {
         return announcementsList
     }

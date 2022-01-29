@@ -33,12 +33,12 @@ struct CartItemView: View {
                     
                 Spacer()
                 
-                Text("Amount: ")
+                Text("Size: ")
                     .font(.callout)
                 
-                Picker(selection: $viewModel.amount, label: Text("")) {
-                    ForEach(1...30, id: \.self) { index in
-                        Text("\(index)").tag(index)
+                Picker(selection: $viewModel.size, label: Text("")) {
+                    ForEach(viewModel.sizes, id: \.self) { size in
+                        Text("\(size)").tag(size)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
