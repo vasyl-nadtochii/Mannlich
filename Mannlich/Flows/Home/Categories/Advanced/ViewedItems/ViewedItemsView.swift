@@ -20,9 +20,11 @@ struct ViewedItemsView: View {
             }
             else {
                 List {
-                    ForEach(viewModel.productList) { product in
-                        ViewedItemView(viewModel: ViewedItemViewModel(viewedItem: product, isLiked: viewModel.isLiked(viewedItem: product), handler: { id in
+                    ForEach(viewModel.productList) { viewedProduct in
+                        ViewedItemView(viewModel: ViewedItemViewModel(viewedItem: viewedProduct, isLiked: viewModel.isLiked(viewedItem: viewedProduct), handler: { id in
                             viewModel.dataManager.addRemoveLiked(id: id)
+                        }, dateHandler: { newDate in
+                            viewModel.dataManager.addOrUpdateViewed(for: viewedProduct.product, newDate: newDate)
                         }))
                     }
                 }

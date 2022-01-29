@@ -21,8 +21,10 @@ struct CartView: View {
             else {
                 List {
                     ForEach(viewModel.cartList) { cartProduct in
-                        CartItemView(viewModel: CartItemViewModel(cartProduct: cartProduct, handler: { newSize in
-                            viewModel.dataManager.changeCartItemSize(id: cartProduct.product.id, newValue: newSize)
+                        CartItemView(viewModel: CartItemViewModel(cartProduct: cartProduct,
+                                                                  handler: { newValue in
+                            viewModel.dataManager.changeCartItemAmount(id: cartProduct.product.id,
+                                                                       newValue: newValue)
                         }))
                     }
                     .onDelete(perform: removeFromLiked)

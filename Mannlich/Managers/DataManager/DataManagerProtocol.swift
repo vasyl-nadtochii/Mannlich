@@ -32,4 +32,5 @@ protocol DataManagerProtocol {
     func changeCartItemAmount(id: Int, newValue: Int)
     func changeCartItemSize(id: Int, newValue: String)
     func getAnnouncements() -> [Announcement]?
+    func addOrUpdateViewed(for product: Product, newDate: Date)
 }

@@ -50,7 +50,7 @@ struct OrderedItemView: View {
             }
         }
         .sheet(isPresented: $showingProductScreen) {
-            ProductView()
+            ProductView(viewModel: ProductViewModel(product: viewModel.orderedItem.product))
         }
     }
 }

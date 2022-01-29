@@ -65,7 +65,7 @@ struct CartProduct: Identifiable {
 struct ViewedProduct: Identifiable {
     let id: UUID
     let product: Product
-    let lastViewedDate: Date
+    var lastViewedDate: Date
     
     init(id: UUID = UUID(), product: Product, lastViewedDate: Date) {
         self.id = id

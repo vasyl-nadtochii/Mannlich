@@ -8,3 +8,11 @@
 
 
 import Foundation
+
+class ProductViewModel: ObservableObject {
+    let product: Product
+    
+    init(product: Product) {
+        self.product = product
+    }
+}

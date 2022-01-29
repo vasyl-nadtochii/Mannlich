@@ -16,6 +16,8 @@ struct ViewedItemView: View {
     var body: some View {
         Button {
             showingProductScreen = true
+            viewModel.lastViewedDate = Date()
+            viewModel.dateHandler(Date())
         } label: {
             HStack {
                 viewModel.viewedItem.product.image
@@ -33,7 +35,7 @@ struct ViewedItemView: View {
                         .foregroundColor(.primary)
                     Text("\(String(format: "%g", viewModel.viewedItem.product.price))$")
                         .foregroundColor(.secondary)
-                    Text("Last viewed on \(viewModel.viewedItem.lastViewedDate.stringDate)")
+                    Text("Last viewed on \(viewModel.lastViewedDate.stringDate)")
                         .font(.callout)
                         .foregroundColor(.primary)
                 }
@@ -50,13 +52,18 @@ struct ViewedItemView: View {
             }
         }
         .sheet(isPresented: $showingProductScreen) {
-            ProductView()
+            ProductView(viewModel: ProductViewModel(product: viewModel.viewedItem.product))
         }
     }
 }
 
 struct ViewedItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ViewedItemView(viewModel: ViewedItemViewModel(viewedItem: MockDataManager.shared.getViewedProductList()![0], isLiked: true, handler: { _ in }))
+        ViewedItemView(
+            viewModel: ViewedItemViewModel(
+                viewedItem: MockDataManager.shared.getViewedProductList()![0],
+                isLiked: true,
+                handler: { _ in },
+                dateHandler: { _ in }))
     }
 }

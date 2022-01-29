@@ -48,7 +48,7 @@ struct OrderArchiveItemView: View {
             }
         }
         .sheet(isPresented: $showingProductScreen) {
-            ProductView()
+            ProductView(viewModel: ProductViewModel(product: viewModel.orderArchiveItem.product))
         }
     }
 }

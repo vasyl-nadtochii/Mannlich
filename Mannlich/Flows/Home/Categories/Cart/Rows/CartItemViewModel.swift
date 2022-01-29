@@ -11,20 +11,21 @@ import Foundation
 
 class CartItemViewModel: ObservableObject {
     @Published var cartProduct: CartProduct
-    let sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL"]
+    let size: String
     
-    let handler: (String) -> Void
-    var size: String {
+    let handler: (Int) -> Void
+    var amount: Int {
         didSet {
-            cartProduct.size = size
-            handler(cartProduct.size)
+            cartProduct.amount = amount
+            handler(cartProduct.amount)
         }
     }
     
-    init(cartProduct: CartProduct, handler: @escaping (String) -> Void) {
+    init(cartProduct: CartProduct, handler: @escaping (Int) -> Void) {
         self.cartProduct = cartProduct
         self.handler = handler
         
+        amount = cartProduct.amount
         size = cartProduct.size
     }
 }

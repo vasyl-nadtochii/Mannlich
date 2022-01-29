@@ -10,13 +10,38 @@
 import SwiftUI
 
 struct ProductView: View {
+    @ObservedObject var viewModel: ProductViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    viewModel.product.image
+                        .resizable()
+                        .centerCropped()
+                        .aspectRatio(5/4, contentMode: .fit)
+                    
+                    Text(viewModel.product.name)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.leading)
+                        .padding(.top)
+                        
+                    Text("\(String(format: "%g", viewModel.product.price))$")
+                        .font(.largeTitle)
+                        .fontWeight(.light)
+                        .padding(.leading)
+                    
+                    Divider()
+                }
+                .navigationTitle("Product Overview")
+             }
+        }
     }
 }
 
 struct ProductView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductView()
+        ProductView(viewModel: ProductViewModel(product: MockDataManager.shared.productsList![0]))
     }
 }

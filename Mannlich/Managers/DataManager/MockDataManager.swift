@@ -79,6 +79,19 @@ class MockDataManager {
 }
 
 extension MockDataManager: DataManagerProtocol {
+    func addOrUpdateViewed(for product: Product, newDate: Date) {
+        if let viewedList = viewedProductsList {
+            for i in 0..<viewedList.count {
+                if product == viewedProductsList![i].product {
+                    viewedProductsList![i].lastViewedDate = newDate
+                    return
+                }
+            }
+            
+            viewedProductsList!.append(ViewedProduct(product: product, lastViewedDate: newDate))
+        }
+    }
+    
     func changeCartItemSize(id: Int, newValue: String) {
         for i in 0..<cartProducts.count {
             if cartProducts[i].product.id == id {

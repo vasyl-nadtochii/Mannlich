@@ -29,19 +29,21 @@ struct CartItemView: View {
                         .font(.headline)
                         .lineLimit(1)
                         .foregroundColor(.primary)
+                    Text("Size: \(viewModel.size)")
+                        .foregroundColor(.primary)
                     Text("\(String(format: "%g", viewModel.cartProduct.product.price))$")
                         .foregroundColor(.secondary)
                 }
                     
                 Spacer()
                 
-                Text("Size: ")
+                Text("Amount:")
                     .font(.callout)
                     .foregroundColor(.primary)
                 
-                Picker(selection: $viewModel.size, label: Text("")) {
-                    ForEach(viewModel.sizes, id: \.self) { size in
-                        Text("\(size)").tag(size)
+                Picker(selection: $viewModel.amount, label: Text("")) {
+                    ForEach(1...30, id: \.self) { amount in
+                        Text("\(amount)").tag(amount)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
@@ -54,7 +56,7 @@ struct CartItemView: View {
                 showingProductScreen = true
             })
             .sheet(isPresented: $showingProductScreen) {
-                ProductView()
+                ProductView(viewModel: ProductViewModel(product: viewModel.cartProduct.product))
             }
         }
         .frame(height: 100)
