@@ -11,36 +11,46 @@ import SwiftUI
 
 struct ViewedItemView: View {
     @ObservedObject var viewModel: ViewedItemViewModel
+    @State var showingProductScreen = false
     
     var body: some View {
-        HStack {
-            viewModel.viewedItem.product.image
-                .resizable()
-                .scaledToFill()
-                .frame(width: 75, height: 75)
-                .cornerRadius(10)
-                .padding(6)
-                .clipped()
-            
-            VStack(alignment: .leading) {
-                Text(viewModel.viewedItem.product.name)
-                    .font(.headline)
-                    .lineLimit(1)
-                Text("\(String(format: "%g", viewModel.viewedItem.product.price))$")
-                    .foregroundColor(.secondary)
-                Text("Last viewed on \(viewModel.viewedItem.lastViewedDate.stringDate)")
-                    .font(.callout)
-            }
+        Button {
+            showingProductScreen = true
+        } label: {
+            HStack {
+                viewModel.viewedItem.product.image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 75, height: 75)
+                    .cornerRadius(10)
+                    .padding(6)
+                    .clipped()
                 
-            Spacer()
-            
-            Image(systemName: viewModel.isLiked ? "heart.fill" : "heart")
-                .font(.system(size: 25))
-                .padding(6)
-                .onTapGesture {
-                    viewModel.isLiked.toggle()
-                    viewModel.handler(viewModel.viewedItem.product.id)
+                VStack(alignment: .leading) {
+                    Text(viewModel.viewedItem.product.name)
+                        .font(.headline)
+                        .lineLimit(1)
+                        .foregroundColor(.primary)
+                    Text("\(String(format: "%g", viewModel.viewedItem.product.price))$")
+                        .foregroundColor(.secondary)
+                    Text("Last viewed on \(viewModel.viewedItem.lastViewedDate.stringDate)")
+                        .font(.callout)
+                        .foregroundColor(.primary)
                 }
+                    
+                Spacer()
+                
+                Image(systemName: viewModel.isLiked ? "heart.fill" : "heart")
+                    .font(.system(size: 25))
+                    .padding(6)
+                    .onTapGesture {
+                        viewModel.isLiked.toggle()
+                        viewModel.handler(viewModel.viewedItem.product.id)
+                    }
+            }
+        }
+        .sheet(isPresented: $showingProductScreen) {
+            ProductView()
         }
     }
 }

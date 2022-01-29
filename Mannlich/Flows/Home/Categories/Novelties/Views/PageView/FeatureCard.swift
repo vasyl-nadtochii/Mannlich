@@ -6,6 +6,7 @@ struct FeatureCard: View {
     var body: some View {
         announcement.image
             .resizable()
+            .centerCropped()
             .aspectRatio(3 / 2, contentMode: .fit)
             .overlay {
                 TextOverlay(announcement: announcement)

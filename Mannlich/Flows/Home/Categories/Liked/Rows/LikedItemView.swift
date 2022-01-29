@@ -11,26 +11,35 @@ import SwiftUI
 
 struct LikedItemView: View {
     @ObservedObject var viewModel: LikedItemViewModel
+    @State var showingProductScreen = false
     
     var body: some View {
-        HStack {
-            viewModel.likedProduct.image
-                .resizable()
-                .scaledToFill()
-                .frame(width: 75, height: 75)
-                .cornerRadius(10)
-                .padding(6)
-                .clipped()
-            
-            VStack(alignment: .leading) {
-                Text(viewModel.likedProduct.name)
-                    .font(.headline)
-                    .lineLimit(1)
-                Text("\(String(format: "%g", viewModel.likedProduct.price))$")
-                    .foregroundColor(.secondary)
-            }
+        Button {
+            showingProductScreen = true
+        } label: {
+            HStack {
+                viewModel.likedProduct.image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 75, height: 75)
+                    .cornerRadius(10)
+                    .padding(6)
+                    .clipped()
                 
-            Spacer()
+                VStack(alignment: .leading) {
+                    Text(viewModel.likedProduct.name)
+                        .font(.headline)
+                        .lineLimit(1)
+                        .foregroundColor(.primary)
+                    Text("\(String(format: "%g", viewModel.likedProduct.price))$")
+                        .foregroundColor(.secondary)
+                }
+                    
+                Spacer()
+            }
+        }
+        .sheet(isPresented: $showingProductScreen) {
+            ProductView()
         }
     }
 }

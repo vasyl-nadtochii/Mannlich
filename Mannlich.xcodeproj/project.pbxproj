@@ -43,6 +43,9 @@
 		8B569CC4279DC05100CE919A /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B569CC0279DC05000CE919A /* PageViewController.swift */; };
 		8B569CC5279DC05100CE919A /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B569CC1279DC05000CE919A /* PageView.swift */; };
 		8B569CC7279DC1C500CE919A /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B569CC6279DC1C500CE919A /* Announcement.swift */; };
+		8BA1FCE627A5799F00670EFD /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1FCE527A5799F00670EFD /* ProductView.swift */; };
+		8BA1FCE827A579B000670EFD /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1FCE727A579B000670EFD /* ProductViewModel.swift */; };
+		8BA1FCEA27A589A100670EFD /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1FCE927A589A100670EFD /* Image.swift */; };
 		8BF6904727944FA100328C6D /* MannlichApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6904627944FA100328C6D /* MannlichApp.swift */; };
 		8BF6904927944FA100328C6D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6904827944FA100328C6D /* HomeView.swift */; };
 		8BF6904E27944FA600328C6D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF6904D27944FA600328C6D /* Preview Assets.xcassets */; };
@@ -105,6 +108,9 @@
 		8B569CC0279DC05000CE919A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		8B569CC1279DC05000CE919A /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		8B569CC6279DC1C500CE919A /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		8BA1FCE527A5799F00670EFD /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		8BA1FCE727A579B000670EFD /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		8BA1FCE927A589A100670EFD /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		8BD445CA2798195C00CF2941 /* Mannlich.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mannlich.entitlements; sourceTree = "<group>"; };
 		8BF6904327944FA100328C6D /* Mannlich.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mannlich.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF6904627944FA100328C6D /* MannlichApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MannlichApp.swift; sourceTree = "<group>"; };
@@ -242,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				8B40DCBC279C0C2900D01F8A /* Date.swift */,
+				8BA1FCE927A589A100670EFD /* Image.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -290,6 +297,15 @@
 				8B569CC1279DC05000CE919A /* PageView.swift */,
 			);
 			path = PageView;
+			sourceTree = "<group>";
+		};
+		8BA1FCE427A5797100670EFD /* ProductScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8BA1FCE527A5799F00670EFD /* ProductView.swift */,
+				8BA1FCE727A579B000670EFD /* ProductViewModel.swift */,
+			);
+			path = ProductScreen;
 			sourceTree = "<group>";
 		};
 		8BF6903A27944FA100328C6D = {
@@ -346,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				8BF69056279453C300328C6D /* Home */,
+				8BA1FCE427A5797100670EFD /* ProductScreen */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -560,6 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BA1FCE827A579B000670EFD /* ProductViewModel.swift in Sources */,
 				8BF6906927945C1B00328C6D /* SearchView.swift in Sources */,
 				8B40DCC6279C13D300D01F8A /* HomeViewModel.swift in Sources */,
 				8BF6906F27945C6E00328C6D /* CartView.swift in Sources */,
@@ -570,6 +588,7 @@
 				8B40DCD2279C5F7C00D01F8A /* SearchItemView.swift in Sources */,
 				8B1025F62795BB2000EC4AE5 /* OrderedItemsView.swift in Sources */,
 				8B1025DC2795975C00EC4AE5 /* MockDataManager.swift in Sources */,
+				8BA1FCE627A5799F00670EFD /* ProductView.swift in Sources */,
 				8B40DCBD279C0C2900D01F8A /* Date.swift in Sources */,
 				8B569CC5279DC05100CE919A /* PageView.swift in Sources */,
 				8B1026042796D12A00EC4AE5 /* OrderArchiveView.swift in Sources */,
@@ -594,6 +613,7 @@
 				8B1025FC2795BD8C00EC4AE5 /* OrderedItemView.swift in Sources */,
 				8B10260E2796E18100EC4AE5 /* ViewedItemsView.swift in Sources */,
 				8B40DCC2279C0E6500D01F8A /* LikedItemViewModel.swift in Sources */,
+				8BA1FCEA27A589A100670EFD /* Image.swift in Sources */,
 				8B10260B2796D22A00EC4AE5 /* OrderArchiveItemViewModel.swift in Sources */,
 				8B1026002795CB4700EC4AE5 /* Product.swift in Sources */,
 				8B1025F92795BC2500EC4AE5 /* OrderedItemsViewModel.swift in Sources */,
@@ -796,8 +816,9 @@
 				INFOPLIST_FILE = Mannlich/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -826,8 +847,9 @@
 				INFOPLIST_FILE = Mannlich/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

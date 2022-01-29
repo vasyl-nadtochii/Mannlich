@@ -11,6 +11,7 @@ import SwiftUI
 
 struct CartItemView: View {
     @ObservedObject var viewModel: CartItemViewModel
+    @State var showingProductScreen = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -27,6 +28,7 @@ struct CartItemView: View {
                     Text(viewModel.cartProduct.product.name)
                         .font(.headline)
                         .lineLimit(1)
+                        .foregroundColor(.primary)
                     Text("\(String(format: "%g", viewModel.cartProduct.product.price))$")
                         .foregroundColor(.secondary)
                 }
@@ -35,6 +37,7 @@ struct CartItemView: View {
                 
                 Text("Size: ")
                     .font(.callout)
+                    .foregroundColor(.primary)
                 
                 Picker(selection: $viewModel.size, label: Text("")) {
                     ForEach(viewModel.sizes, id: \.self) { size in
@@ -45,6 +48,13 @@ struct CartItemView: View {
                 .frame(width: geometry.size.width / 6, height: 100)
                 .compositingGroup()
                 .clipped(antialiased: true)
+            }
+            
+            .onTapGesture(perform: {
+                showingProductScreen = true
+            })
+            .sheet(isPresented: $showingProductScreen) {
+                ProductView()
             }
         }
         .frame(height: 100)

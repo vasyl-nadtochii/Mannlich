@@ -67,7 +67,7 @@ class MockDataManager {
                          date: dateFormatter.date(from: "2022-01-22")!, image: Image("test_image2")),
             Announcement(topic: "Да, я слышал про распродажи. А ты?",
                          content: "Placeholder #2",
-                         date: dateFormatter.date(from: "2021-11-29")!, image: Image("gigachad"))
+                         date: dateFormatter.date(from: "2021-12-29")!, image: Image("gigachad"))
         ]
         
         likedProductsIDs = [1, 3, 7, 10]
