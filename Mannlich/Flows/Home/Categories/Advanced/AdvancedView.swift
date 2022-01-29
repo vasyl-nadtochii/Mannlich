@@ -25,77 +25,73 @@ struct AdvancedView: View {
                 Section(header: Text("Account Settings")) {
                     AdvancedInfoRow(viewModel: AdvancedInfoRowViewModel(headerText: viewModel.userName, secondaryText: viewModel.userEmail))
                     
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .changeName))
-                        .onTapGesture {
-                            alertView(title: "Change Name", message: "Enter new name", placeholder: "New name", dataType: .name)
-                        }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .changeName, handler: {
+                        alertView(title: "Change Name",
+                                  message: "Enter new name",
+                                  placeholder: "New name",
+                                  dataType: .name)
+                    }))
                     
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .changeEmail))
-                        .onTapGesture {
-                            alertView(title: "Change Email", message: "Enter new email", placeholder: "New email", dataType: .email)
-                        }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .changeEmail, handler: {
+                        alertView(title: "Change Email",
+                                  message: "Enter new email",
+                                  placeholder: "New email",
+                                  dataType: .email)
+                    }))
                     
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .changePassword))
-                        .onTapGesture {
-                            alertView(title: "Change Password", message: "Enter new password", placeholder: "New password", secureInput: true, dataType: .password)
-                        }
-                }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .changePassword, handler: {
+                        alertView(title: "Change Password",
+                                  message: "Enter new password",
+                                  placeholder: "New password",
+                                  secureInput: true,
+                                  dataType: .password)
+                    }))                }
                 
                 Section(header: Text("Actions")) {
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .showOrdered))
-                        .onTapGesture {
-                            showingOrderedList = true
-                        }
-                        .sheet(isPresented: $showingOrderedList) {
-                            OrderedItemsView(viewModel: OrderedItemsViewModel(dataManager: viewModel.dataManager))
-                        }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .showOrdered, handler: {
+                        showingOrderedList = true
+                    }))
+                    .sheet(isPresented: $showingOrderedList) {
+                        OrderedItemsView(viewModel: OrderedItemsViewModel(dataManager: viewModel.dataManager))
+                    }
                     
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .showViewed))
-                        .onTapGesture {
-                            showingViewedList = true
-                        }
-                        .sheet(isPresented: $showingViewedList) {
-                            ViewedItemsView(viewModel: ViewedItemsViewModel(dataManager: viewModel.dataManager))
-                        }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .showViewed, handler: {
+                        showingViewedList = true
+                    }))
+                    .sheet(isPresented: $showingViewedList) {
+                        ViewedItemsView(viewModel: ViewedItemsViewModel(dataManager: viewModel.dataManager))
+                    }
                     
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .showOrderArchive))
-                        .onTapGesture {
-                            showingArchiveList = true
-                        }
-                        .sheet(isPresented: $showingArchiveList) {
-                            OrderArchiveView(viewModel: OrderArchiveViewModel(dataManager: viewModel.dataManager))
-                        }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .showOrderArchive, handler: {
+                        showingArchiveList = true
+                    }))
+                    .sheet(isPresented: $showingArchiveList) {
+                        OrderArchiveView(viewModel: OrderArchiveViewModel(dataManager: viewModel.dataManager))
+                    }
                     
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .contactSupport))
-                        .onTapGesture {
-                            sendEmail(to: "iangenda2209@gmail.com", topic: "Mannlich iOS - Support", body: "Ask your question here")
-                        }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .contactSupport, handler: {
+                        sendEmail(to: "iangenda2209@gmail.com", topic: "Mannlich iOS - Support", body: "Ask your question here")
+                    }))
                     
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .logOut))
-                        .onTapGesture {
-                            showingLogOutAlert = true
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .logOut, handler: {
+                        showingLogOutAlert = true
+                    }))
+                    .alert("Are you sure you want to log out?", isPresented: $showingLogOutAlert) {
+                        Button("Log Out", role: .destructive) {
+                            // do logout stuff
                         }
-                        .alert("Are you sure you want to log out?", isPresented: $showingLogOutAlert) {
-                            Button("Log Out", role: .destructive) {
-                                // do logout stuff
-                            }
-                        }
+                    }
                 }
                 
                 Section(header: Text("Other")) {
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .bugReport))
-                        .onTapGesture {
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "dd/MM/YYYY"
-                            
-                            sendEmail(to: "iangenda2209@gmail.com", topic: "Mannlich iOS - Bug Report on \(dateFormatter.string(from: Date()))", body: "Describe your problem here")
-                        }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .bugReport, handler: {
+                        sendEmail(to: "iangenda2209@gmail.com", topic: "Mannlich iOS - Bug Report on \(Date().stringDate)", body: "Describe your problem here")
+                    }))
                     
-                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .userAgreement))
-                        .onTapGesture {
-                            guard let url = viewModel.userAgreementURL else { return }
-                            UIApplication.shared.open(url)
-                        }
+                    AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .userAgreement, handler: {
+                        guard let url = viewModel.userAgreementURL else { return }
+                        UIApplication.shared.open(url)
+                    }))
                     
                     AdvancedInfoRow(viewModel: AdvancedInfoRowViewModel(headerText: "Version", secondaryText: viewModel.appVersion ?? "N/A"))
                 }

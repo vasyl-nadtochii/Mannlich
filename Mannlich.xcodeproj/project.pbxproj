@@ -427,8 +427,8 @@
 		8BF69070279472EF00328C6D /* Rows */ = {
 			isa = PBXGroup;
 			children = (
-				8BF690742794780D00328C6D /* Info */,
 				8BF690732794780200328C6D /* Action */,
+				8BF690742794780D00328C6D /* Info */,
 			);
 			path = Rows;
 			sourceTree = "<group>";

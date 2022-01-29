@@ -14,7 +14,9 @@ class AdvancedActionRowViewModel: ObservableObject {
     var type: RowType
     var iconName: String
     
-    init(type: RowType) {
+    let handler: () -> (Void)
+    
+    init(type: RowType, handler: @escaping () -> (Void)) {
         self.type = type
         switch type {
         case .changeName:
@@ -38,6 +40,8 @@ class AdvancedActionRowViewModel: ObservableObject {
         case .userAgreement:
             iconName = "info.circle.fill"
         }
+        
+        self.handler = handler
     }
 }
 
