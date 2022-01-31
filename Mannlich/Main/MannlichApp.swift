@@ -11,9 +11,17 @@ import SwiftUI
 
 @main
 struct MannlichApp: App {
+    let userInfo = UserDefaults.standard
+    
     var body: some Scene {
         WindowGroup {
-            HomeView(viewModel: HomeViewModel())
+            if let _ = userInfo.string(forKey: AuthKeys.email),
+                let _ = userInfo.string(forKey: AuthKeys.email) {
+                    HomeView(viewModel: HomeViewModel())
+            }
+            else {
+                SignInView()
+            }
         }
     }
 }
