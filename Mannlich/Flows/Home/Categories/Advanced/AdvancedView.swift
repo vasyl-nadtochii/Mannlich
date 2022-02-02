@@ -45,7 +45,8 @@ struct AdvancedView: View {
                                   placeholder: "New password",
                                   secureInput: true,
                                   dataType: .password)
-                    }))                }
+                    }))
+                }
                 
                 Section(header: Text("Actions")) {
                     AdvancedActionRow(viewModel: AdvancedActionRowViewModel(type: .showOrdered, handler: {
@@ -78,7 +79,17 @@ struct AdvancedView: View {
                     }))
                     .alert("Are you sure you want to log out?", isPresented: $showingLogOutAlert) {
                         Button("Log Out", role: .destructive) {
-                            // do logout stuff
+                            viewModel.clearUserData()
+                            
+                            if let window = UIApplication.shared.windows.first {
+                                window.rootViewController = UIHostingController(rootView: SignInView(viewModel: SignInViewModel(successHandler: {
+                                    if let innerWindow = UIApplication.shared.windows.first {
+                                        innerWindow.rootViewController = UIHostingController(rootView: HomeView(viewModel: HomeViewModel(dataManager: MockDataManager.shared)))
+                                        innerWindow.makeKeyAndVisible()
+                                    }
+                                })))
+                                window.makeKeyAndVisible()
+                            }
                         }
                     }
                 }

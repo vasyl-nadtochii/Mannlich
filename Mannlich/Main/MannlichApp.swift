@@ -8,16 +8,16 @@
 
 
 import SwiftUI
+import Firebase
 
 @main
 struct MannlichApp: App {
-    let userInfo = UserDefaults.standard
+    @ObservedObject var viewModel = MainViewModel()
     
     var body: some Scene {
         WindowGroup {
-            if let _ = userInfo.string(forKey: AuthKeys.email),
-                let _ = userInfo.string(forKey: AuthKeys.email) {
-                    HomeView(viewModel: HomeViewModel())
+            if viewModel.userLoggedIn {
+                HomeView(viewModel: HomeViewModel())
             }
             else {
                 SignInView()

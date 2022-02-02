@@ -73,8 +73,8 @@ class MockDataManager {
         likedProductsIDs = [1, 3, 7, 10]
         
         user = User(name: "Vasyl Nadtochii",
-                    email: "vasyanadtochiy146@gmail.com",
-                    password: MD5(string: "sword2233"))
+                    email: UserDefaults.standard.string(forKey: AuthKeys.email)!,
+                    password: MD5(string: UserDefaults.standard.string(forKey: AuthKeys.password)!))
     }
 }
 

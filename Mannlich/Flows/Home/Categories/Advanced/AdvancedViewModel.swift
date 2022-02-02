@@ -18,11 +18,18 @@ class AdvancedViewModel: ObservableObject {
     @Published var userName: String
     @Published var userEmail: String
     
+    let defaults = UserDefaults.standard
+    
     init(dataManager: DataManagerProtocol) {
         self.dataManager = dataManager
         
         userName = dataManager.getName()!
         userEmail = dataManager.getEmail()!
+    }
+    
+    func clearUserData() {
+        defaults.set(nil, forKey: AuthKeys.email)
+        defaults.set(nil, forKey: AuthKeys.password)
     }
     
     func changeUserData(dataType: DataType, newValue: String) {
