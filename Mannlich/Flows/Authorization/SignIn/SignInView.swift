@@ -13,6 +13,7 @@ struct SignInView: View {
     
     @State var bgOpacity: CGFloat = 0.5
     @State var progressOpacity: CGFloat = 0
+    @State var showingSignUpScreen = false
     
     @ObservedObject var viewModel = SignInViewModel(
         successHandler: {
@@ -128,6 +129,22 @@ struct SignInView: View {
                             }
                         }
                         .offset(y: -40)
+                        
+                        Button {
+                            showingSignUpScreen = true
+                        } label: {
+                            Text("Create an Account")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.black)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(7)
+                                .font(.callout)
+                                .offset(y: 10)
+                        }
+                        .sheet(isPresented: $showingSignUpScreen) {
+                            SignUpView()
+                        }
                     }
                 }
             }

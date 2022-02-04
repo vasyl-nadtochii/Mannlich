@@ -83,6 +83,7 @@ struct AdvancedView: View {
                             
                             if let window = UIApplication.shared.windows.first {
                                 window.rootViewController = UIHostingController(rootView: SignInView(viewModel: SignInViewModel(successHandler: {
+                                    
                                     if let innerWindow = UIApplication.shared.windows.first {
                                         innerWindow.rootViewController = UIHostingController(rootView: HomeView(viewModel: HomeViewModel(dataManager: MockDataManager.shared)))
                                         innerWindow.makeKeyAndVisible()
